@@ -26,37 +26,32 @@ module.exports = function(req, res) {
 	var query = ` {
 		${body.data.queryName}(_id: "${body.data.contentId}") {
 			_id
-	    brand {
-	      brandName
-	      factoryLocation
-	      logo {
-					path
-	        sourceUrl
-	      }
+	    brandName
+	    factoryLocation {
+	      city
+	      state
 	    }
-	    caloriesPerPint
-	    caloriesPerServing
-	    description
-	    dietaryCertification
-	    flavorName
-	    highProtein
-	    image {
+	    logo {
+	      _id
+	      caption
+	      credit
+	      description
+	      filename
+	      mimeType
 	      path
 	      sourceUrl
+	      title
+	      uploadStatus
 	    }
-	    mainFlavor
-	    productType {
-	      presentation
-	      whereToBuy
-	    }
-	    servingsPerContainer
-	    sourcing
+	    url
 	  }
 	}`;
 
 	takeshape(query).then(result => {
 
-		console.log('Result', result);
+		console.log('')
+		console.log(result)
+		console.log('')
 
 		var obj = result.data[body.data.queryName];
 		obj.objectID = obj._id

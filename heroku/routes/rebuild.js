@@ -8,48 +8,35 @@ const takeshape = require('../services/takeshape')
 
 module.exports = (req, res) => {
 
-	if (!req.query.contentType) {
-		res.status(200).send('Sorry you need to the the content type. ?contentType=cheese')
-		return
-	}
-
 	// Setup the index.
-	const index = algolia.initIndex(req.query.contentType);
-
+	const index = algolia.initIndex('brand')
 
 	// Set the query name.
-	var queryName = 'get' + titleCase(req.query.contentType) + 'List'
+	var queryName = 'getBrandList'
 
 	// Set the Query for the content type.
 	var query = `{
 		${queryName} {
 			items {
 				_id
-		    brand {
-		      brandName
-		      factoryLocation
-		      logo {
-						path
-		        sourceUrl
-		      }
+		    brandName
+		    factoryLocation {
+		      city
+		      state
 		    }
-		    caloriesPerPint
-		    caloriesPerServing
-		    description
-		    dietaryCertification
-		    flavorName
-		    highProtein
-		    image {
+		    logo {
+		      _id
+		      caption
+		      credit
+		      description
+		      filename
+		      mimeType
 		      path
 		      sourceUrl
+		      title
+		      uploadStatus
 		    }
-		    mainFlavor
-		    productType {
-		      presentation
-		      whereToBuy
-		    }
-		    servingsPerContainer
-		    sourcing
+		    url
 			}
 		}
 	}
