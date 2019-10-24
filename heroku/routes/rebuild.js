@@ -9,22 +9,47 @@ const takeshape = require('../services/takeshape')
 module.exports = (req, res) => {
 
 	// Setup the index.
-	const index = algolia.initIndex('brand')
+	const index = algolia.initIndex('flavor')
 
 	// Set the query name.
-	var queryName = 'getBrandList'
+	var queryName = 'getFlavorList'
 
 	// Set the Query for the content type.
 	var query = `{
 		${queryName} {
 			items {
 				_id
-		    brandName
-		    factoryLocation {
-		      city
-		      state
+		    brand {
+		      _id
+		      brandName
+		      factoryLocation {
+		        city
+		        state
+		      }
+		      logo {
+		        _id
+		        caption
+		        credit
+		        description
+		        filename
+		        mimeType
+		        path
+		        sourceUrl
+		        title
+		        uploadStatus
+		      }
+		      url
 		    }
-		    logo {
+		    caloriesPerPint
+		    caloriesPerServing
+		    description
+		    dietFriendly
+		    dietaryCertification
+		    flavorName
+		    highFatContent
+		    highProtein
+		    highSugarContent
+		    image {
 		      _id
 		      caption
 		      credit
@@ -36,7 +61,14 @@ module.exports = (req, res) => {
 		      title
 		      uploadStatus
 		    }
-		    url
+		    mainFlavor
+		    productType {
+		      _id
+		      presentation
+		      whereToBuy
+		    }
+		    servingsPerContainer
+		    sourcing
 			}
 		}
 	}
