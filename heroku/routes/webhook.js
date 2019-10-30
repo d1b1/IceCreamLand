@@ -74,7 +74,7 @@ module.exports = function(req, res) {
     servingsPerContainer
     sourcing
   }
-	}`;
+}`;
 
 	takeshape(query).then(result => {
 
