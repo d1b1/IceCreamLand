@@ -26,32 +26,54 @@ module.exports = function(req, res) {
 	var query = ` {
 		${body.data.queryName}(_id: "${body.data.contentId}") {
 			_id
-	    brand {
-	      brandName
-	      factoryLocation
-	      logo {
-					path
-	        sourceUrl
-	      }
-	    }
-	    caloriesPerPint
-	    caloriesPerServing
-	    description
-	    dietaryCertification
-	    flavorName
-	    highProtein
-	    image {
-	      path
-	      sourceUrl
-	    }
-	    mainFlavor
-	    productType {
-	      presentation
-	      whereToBuy
-	    }
-	    servingsPerContainer
-	    sourcing
-	  }
+    	brand {
+      _id
+      brandName
+      factoryLocation {
+        latitude
+        longitude
+      }
+      logo {
+        _id
+        caption
+        credit
+        description
+        filename
+        mimeType
+        path
+        sourceUrl
+        title
+        uploadStatus
+      }
+      url
+    }
+    caloriesPerPint
+    caloriesPerServing
+    description
+    dietFriendly
+    dietaryCertification
+    flavorName
+    healthCondition
+    highFatContent
+    highProtein
+    highSugarContent
+    image {
+      _id
+      caption
+      credit
+      description
+      filename
+      mimeType
+      path
+      sourceUrl
+      title
+      uploadStatus
+    }
+    mainFlavor
+    productType
+    servingsPerContainer
+    sourcing
+  }
 	}`;
 
 	takeshape(query).then(result => {
